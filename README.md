@@ -57,7 +57,7 @@ By offloading geometry transformation to the **GPU Vertex Shader**, the CPU only
 ---
 
 ### 演示链接 | Demo & Links
-*   **视频讲解 (Lesson by me):** [项目演示与技术说明](https://www.bilibili.com/video/BV1YZ421T71J/)
+*   **视频讲解 (Lesson by me):** [项目演示与技术说明-Bilibili](https://www.bilibili.com/video/BV1YZ421T71J/)
 *   **平台 (Platform):** IdeaXR / Godot
 *   **语言 (Language):** GLSL
 
