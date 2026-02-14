@@ -44,21 +44,8 @@ By offloading geometry transformation to the **GPU Vertex Shader**, the CPU only
 ---
 
 ### 4. 技术实现 | Implementation Snippet
-
-
-核心算法将模型局部坐标映射为贝塞尔参数空间：
-The core algorithm maps local mesh coordinates into Bezier parametric space:
 <img width="2646" height="2697" alt="Bezier_GPU_Algorithm" src="https://github.com/user-attachments/assets/4184588b-7d63-4e84-9263-6410881831d1" />
 
-```glsl
-// 将顶点沿贝塞尔曲线路径进行法线方向偏移
-// Offsetting vertices along the Bezier path based on normals
-vec3 map_and_deform(vec3 original_pos) {
-    vec3 pt = map(original_pos); // 映射到参数空间 (Map to parametric space)
-    vec3 result = Bezier3D(pt);  // GPU 并行计算贝塞尔位置 (Compute Bezier position)
-    return result;
-}
-```
 
 ---
 
