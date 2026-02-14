@@ -9,6 +9,10 @@
 
 Developed in June 2024, this project addresses the performance bottlenecks of generating dynamic high-poly geometries in VR environments. Using the **IdeaXR** engine, I implemented a mapping system via **GLSL Vertex Shaders** that deforms and maps standard meshes (Cubes) onto Bezier trajectories in real-time, creating volumetric shapes like jump ropes and organic horns.
 
+<div align="center">
+<img width="621" height="363" alt="7aec8c513d9799716392b5121d123825" src="https://github.com/user-attachments/assets/1c66695b-46e4-4d83-baa1-b71d3fd36436" />
+</div>
+
 ---
 
 ### 2. 开发动机：为什么选择 GPU？ | Motivation: Why GPU?
@@ -32,6 +36,10 @@ By offloading geometry transformation to the **GPU Vertex Shader**, the CPU only
 *   **实时动态交互 (Real-time Interaction):** 支持通过调节参数生成跳绳动画，响应速度极快。
 *   **参数化几何控制 (Parametric Geometry):** 允许沿曲线路径动态调节几何体粗细（如通过 $t$ 参数控制生成牛角管）。
 *   **动态切空间构建 (Dynamic Local Frame):** 使用二次叉乘构建局部坐标系，确保几何体横截面在曲线扭转时保持正确方向。
+
+<div align="center">
+<img width="808" height="402" alt="d5ccbe2d144e1e8d57bb8219624a011b" src="https://github.com/user-attachments/assets/e5ce9e7e-3b63-415b-889b-eca9935b11c6" />
+</div>
 
 ---
 
@@ -66,4 +74,9 @@ vec3 map_and_deform(vec3 original_pos) {
 *   **平台 (Platform):** IdeaXR / Godot
 *   **语言 (Language):** GLSL
 
+<div align="center">
+<img width="965" height="631" alt="4538dc38d885161eb52dcd0ac1cab358" src="https://github.com/user-attachments/assets/759af608-358f-44b1-a4e7-9523c2904e8f" />
+</div>
+
+Thank you for your reading - by UkawaJun
 ---
