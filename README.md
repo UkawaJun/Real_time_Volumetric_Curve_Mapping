@@ -51,8 +51,7 @@ By offloading geometry transformation to the **GPU Vertex Shader**, the CPU only
 
 ### 5. 局限性与未来研究 | Limitations & Future Work
 *   **高阶曲线对齐:** 目前在二次贝塞尔（3点）下表现完美，但在三次贝塞尔（4点）下存在坐标系突跳（Gimbal Lock 类似问题）。
-*   **研究目标:** 我计划引入 **Parallel Transport Frame (PTF)** 算法来取代当前的叉乘方案，以在更复杂的曲线路径下实现平滑的几何生成。
-*   **Cubic Curve Alignment:** Currently perfect for Quadratic curves, but faces orientation flips in Cubic setups. I plan to implement **Parallel Transport Frames (PTF)** for smoother geometry generation on complex paths.
+*   **Cubic Curve Alignment:** Currently perfect for Quadratic curves, but faces orientation flips in Cubic setups. 
 
 ---
 
