@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>GPU Bezier Algorithm Architecture</title>
+    <!-- 导出插件 -->
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <style>
+        body {
+            font-family: "Palatino", "Times New Roman", "Noto Sans SC", serif;
+            background-color: #fafafa;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px;
+            color: #333;
+        }
+
+        .export-btn {
+            margin-bottom: 20px;
+            padding: 8px 20px;
+            background: #2c3e50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        #flowchart-container {
+            background: white;
+            width: 800px;
+            padding: 40px;
+            border: 1px solid #eee;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #333;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+        }
+
+        .header h1 { font-size: 22px; margin: 0; }
+        .header p { font-size: 14px; color: #666; margin: 5px 0 0; }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+            padding: 15px;
+            border: 1px solid #f0f0f0;
+            background: #fff;
+        }
+
+        .step-viz {
+            width: 120px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            background: #fcfcfc;
+            border: 1px dashed #ddd;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-title {
+            font-weight: bold;
+            font-size: 16px;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        .step-desc {
+            font-size: 13px;
+            line-height: 1.5;
+            color: #555;
+            margin-bottom: 8px;
+        }
+
+        .formula {
+            font-family: "Cambria", "Times New Roman", serif;
+            background: #f4f4f4;
+            padding: 8px 12px;
+            font-size: 14px;
+            border-left: 3px solid #2c3e50;
+            display: inline-block;
+        }
+
+        .arrow {
+            text-align: center;
+            font-size: 20px;
+            color: #ccc;
+            margin: -20px 0 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <button class="export-btn" onclick="saveAsImage()">导出 PNG / Save as Image</button>
+
+    <div id="flowchart-container">
+        <div class="header">
+            <h1>基于 GPU 的贝塞尔体积几何变换流程</h1>
+            <p>GPU-Accelerated Volumetric Bezier Transformation Flowchart</p>
+        </div>
+
+        <!-- Step 1 -->
+        <div class="step">
+            <div class="step-viz">
+                <!-- 立方体示意图 -->
+                <svg width="60" height="60" viewBox="0 0 60 60">
+                    <rect x="15" y="15" width="30" height="30" fill="none" stroke="#333" stroke-width="1.5"/>
+                    <line x1="15" y1="15" x2="25" y2="5" stroke="#333" stroke-width="1.5"/>
+                    <line x1="45" y1="15" x2="55" y2="5" stroke="#333" stroke-width="1.5"/>
+                    <rect x="25" y="5" width="30" height="30" fill="none" stroke="#333" stroke-width="1.5"/>
+                </svg>
+            </div>
+            <div class="step-content">
+                <div class="step-title">1. 参数映射 | Parametric Mapping</div>
+                <div class="step-desc">
+                    将立方体模型的局部坐标 X 映射为贝塞尔参数 t，Y 和 Z 映射为截面偏移。<br>
+                    Map local X to Bezier parameter t; map Y/Z to cross-section offsets.
+                </div>
+                <div class="formula">t = (P<sub>mx</sub> + a) / 2a ; P<sub>my</sub> = P<sub>y</sub>/a ; P<sub>mz</sub> = P<sub>z</sub>/a</div>
+            </div>
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <!-- Step 2 -->
+        <div class="step">
+            <div class="step-viz">
+                <!-- 坐标系示意图 -->
+                <svg width="60" height="60" viewBox="0 0 60 60">
+                    <line x1="30" y1="30" x2="55" y2="30" stroke="#c0392b" stroke-width="2" marker-end="url(#arrowhead)"/>
+                    <line x1="30" y1="30" x2="30" y2="5" stroke="#2980b9" stroke-width="2"/>
+                    <line x1="30" y1="30" x2="10" y2="50" stroke="#27ae60" stroke-width="2"/>
+                    <circle cx="30" cy="30" r="2" fill="#333"/>
+                </svg>
+            </div>
+            <div class="step-content">
+                <div class="step-title">2. 动态坐标系构建 | Dynamic Frame Construction</div>
+                <div class="step-desc">
+                    利用控制点叉乘构建局部切空间 (sx, sy, sz)，确保几何体截面始终垂直于曲线切线。<br>
+                    Build local frame via cross-products to keep the section perpendicular to the curve.
+                </div>
+                <div class="formula">sz = normalize((d2 - p2) × (d1 - p2)) ; sy = normalize(sx × sz)</div>
+            </div>
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <!-- Step 3 -->
+        <div class="step">
+            <div class="step-viz">
+                <!-- 贝塞尔曲线示意图 -->
+                <svg width="60" height="60" viewBox="0 0 60 60">
+                    <path d="M 10 50 Q 30 0 50 50" fill="none" stroke="#2c3e50" stroke-width="3"/>
+                    <circle cx="10" cy="50" r="3" fill="red"/>
+                    <circle cx="30" cy="10" r="3" fill="green"/>
+                    <circle cx="50" cy="50" r="3" fill="blue"/>
+                </svg>
+            </div>
+            <div class="step-content">
+                <div class="step-title">3. 体积变形与置换 | Deformation & Displacement</div>
+                <div class="step-desc">
+                    根据 t 值计算轨迹中心 t<sub>0</sub>，并沿局部坐标轴展开顶点生成体积。<br>
+                    Calculate curve center t<sub>0</sub> and offset vertices along local axes to create volume.
+                </div>
+                <div class="formula">t<sub>final</sub> = t<sub>0</sub> + t<sub>1</sub>(z-offset) + t<sub>2</sub>(y-offset)</div>
+            </div>
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <!-- Step 4 -->
+        <div class="step">
+            <div class="step-viz">
+                <!-- 平滑圆柱示意图 -->
+                <svg width="60" height="60" viewBox="0 0 60 60">
+                    <ellipse cx="30" cy="30" rx="20" ry="25" fill="none" stroke="#2c3e50" stroke-width="2"/>
+                    <line x1="30" y1="30" x2="48" y2="15" stroke="#e67e22" stroke-width="1.5" stroke-dasharray="2"/>
+                </svg>
+            </div>
+            <div class="step-content">
+                <div class="step-title">4. 法线插值与圆滑化 | Normal Smoothing</div>
+                <div class="step-desc">
+                    重计算顶点法线方向，通过插值使原始方形截面实现圆润的管状效果。<br>
+                    Recalculate vertex normals to achieve a smooth cylindrical visual from a box mesh.
+                </div>
+                <div class="formula">Normal<sub>out</sub> = normalize(Vertex<sub>final</sub> - t<sub>0</sub>)</div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function saveAsImage() {
+            html2canvas(document.getElementById('flowchart-container'), {
+                scale: 3, // 高清
+                backgroundColor: "#ffffff"
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = 'Bezier_GPU_Algorithm.png';
+                link.href = canvas.toDataURL();
+                link.click();
+            });
+        }
+    </script>
+</body>
+</html>
