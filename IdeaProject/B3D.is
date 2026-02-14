@@ -1,0 +1,35 @@
+extends MeshInstance
+
+
+# Declare member variables here. Examples:
+# var a: int = 2
+# var b: String = "text"
+
+var vector_1_2_3
+var time:float = 0.0
+var sShader
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	vector_1_2_3 = []
+	sShader = self.get_surface_material(0)
+	for a in range(0,3):
+		vector_1_2_3.append(self.get_child(a).get_global_translation())
+	print("点数据")
+	print(self.mesh.get_faces())
+	print("点数据")
+	print(vector_1_2_3)
+	
+	
+
+
+
+
+func _process(delta: float) -> void:
+
+	for a in range(0,3):
+		vector_1_2_3[a]  =  self.get_child(a).translation
+	sShader.set_shader_param("p1",vector_1_2_3[0])
+	sShader.set_shader_param("p2",vector_1_2_3[1])
+	sShader.set_shader_param("p3",vector_1_2_3[2])
+	sShader.set_shader_param("p0",self.get_global_translation())
+	pass

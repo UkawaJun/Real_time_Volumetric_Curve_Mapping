@@ -1,0 +1,29 @@
+extends MeshInstance
+
+
+# Declare member variables here. Examples:
+# var a: int = 2
+# var b: String = "text"
+var time:float
+export var dis:float = 0.6
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	time = 0.0
+	pass # Replace with function body.
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	time += delta
+	
+	self.translation.y = max(0,cos(4*time + dis)*2)  +1.4
+	
+	#跳跃时机
+	var timesdis = max(0,cos(4*time + dis)*2)
+	self.translation.y = timesdis  +1.4
+	
+	if ( timesdis > 0.2):
+		self.rotate_x(-0.2)
+	else:
+		self.rotation_degrees = Vector3(0.0,65.863,-90.0)
+		
+	pass

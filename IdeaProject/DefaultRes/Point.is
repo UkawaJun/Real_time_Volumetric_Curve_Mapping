@@ -1,0 +1,25 @@
+extends MeshInstance
+
+
+# Declare member variables here. Examples:
+# var a: int = 2
+# var b: String = "text"
+var time = 0.0
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	
+	#print(self.mesh.get_faces())
+
+	var c = self.get_surface_material(0).set_shader_param("p3",Vector3(0,0,0))
+
+	print(c)
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	time += delta
+	var t = sin(time)*2
+	var c = self.get_surface_material(0).set_shader_param("p3",Vector3(-0.2,0,t))
+	pass
