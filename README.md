@@ -4,12 +4,6 @@
 # Vertex-Bezier: 实时高维曲线几何映射器
 # Vertex-Bezier: GPU-Driven Volumetric Curve Mapping
 
-### 1. 项目概要 | Abstract
-本项目开发于 2024 年 6 月（期末考试周期间）。针对 VR 环境下动态高面数几何体生成的性能瓶颈，我利用 **IdeaXR (Godot-based)** 引擎开发了一套基于 **HLSL 顶点着色器** 的映射系统。该系统能将标准立方体实时“挤压、扭转并映射”至贝塞尔曲线路径上，生成具有体积感的动态几何体（如跳绳、牛角状管道等）。
-
-Developed in June 2024, this project addresses the performance bottlenecks of generating dynamic high-poly geometries in VR environments. Using the **IdeaXR** engine, I implemented a mapping system via **HLSL Vertex Shaders** that deforms and maps standard meshes (Cubes) onto Bezier trajectories in real-time, creating volumetric shapes like jump ropes and organic horns.
-
-
 > **1. 项目概要 | Abstract**
 > 
 > 本项目展示了一种基于 **HLSL 顶点着色器** 的实时几何映射方法。利用 **IdeaXR** 引擎，我实现了将标准立方体沿贝塞尔曲线路径进行实时挤压与扭转的变形算法。该方法绕过了传统的 CPU 网格生成瓶颈，能够以极高性能在 VR 环境中呈现具有体积感的动态曲线几何体（如跳绳、牛角状管道等）。
