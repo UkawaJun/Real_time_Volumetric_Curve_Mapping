@@ -5,16 +5,16 @@
 # Vertex-Bezier: GPU-Driven Volumetric Curve Mapping
 
 ### 1. 项目概要 | Abstract
-本项目开发于 2024 年 6 月（期末考试周期间）。针对 VR 环境下动态高面数几何体生成的性能瓶颈，我利用 **IdeaXR (Godot-based)** 引擎开发了一套基于 **GLSL 顶点着色器** 的映射系统。该系统能将标准立方体实时“挤压、扭转并映射”至贝塞尔曲线路径上，生成具有体积感的动态几何体（如跳绳、牛角状管道等）。
+本项目开发于 2024 年 6 月（期末考试周期间）。针对 VR 环境下动态高面数几何体生成的性能瓶颈，我利用 **IdeaXR (Godot-based)** 引擎开发了一套基于 **HLSL 顶点着色器** 的映射系统。该系统能将标准立方体实时“挤压、扭转并映射”至贝塞尔曲线路径上，生成具有体积感的动态几何体（如跳绳、牛角状管道等）。
 
-Developed in June 2024, this project addresses the performance bottlenecks of generating dynamic high-poly geometries in VR environments. Using the **IdeaXR** engine, I implemented a mapping system via **GLSL Vertex Shaders** that deforms and maps standard meshes (Cubes) onto Bezier trajectories in real-time, creating volumetric shapes like jump ropes and organic horns.
+Developed in June 2024, this project addresses the performance bottlenecks of generating dynamic high-poly geometries in VR environments. Using the **IdeaXR** engine, I implemented a mapping system via **HLSL Vertex Shaders** that deforms and maps standard meshes (Cubes) onto Bezier trajectories in real-time, creating volumetric shapes like jump ropes and organic horns.
 
 
 > **1. 项目概要 | Abstract**
 > 
-> 本项目展示了一种基于 **GLSL 顶点着色器** 的实时几何映射方法。利用 **IdeaXR** 引擎，我实现了将标准立方体沿贝塞尔曲线路径进行实时挤压与扭转的变形算法。该方法绕过了传统的 CPU 网格生成瓶颈，能够以极高性能在 VR 环境中呈现具有体积感的动态曲线几何体（如跳绳、牛角状管道等）。
+> 本项目展示了一种基于 **HLSL 顶点着色器** 的实时几何映射方法。利用 **IdeaXR** 引擎，我实现了将标准立方体沿贝塞尔曲线路径进行实时挤压与扭转的变形算法。该方法绕过了传统的 CPU 网格生成瓶颈，能够以极高性能在 VR 环境中呈现具有体积感的动态曲线几何体（如跳绳、牛角状管道等）。
 >
-> This project demonstrates a real-time geometric mapping **method** using **GLSL Vertex Shaders**. Within the **IdeaXR** engine, I implemented an **algorithm** that deforms standard cubes along Bezier paths. By bypassing traditional CPU mesh generation, this **technique** enables high-performance rendering of volumetric curved geometries in VR like jump ropes and organic horns..
+> This project demonstrates a real-time geometric mapping **method** using **HLSL Vertex Shaders**. Within the **IdeaXR** engine, I implemented an **algorithm** that deforms standard cubes along Bezier paths. By bypassing traditional CPU mesh generation, this **technique** enables high-performance rendering of volumetric curved geometries in VR like jump ropes and organic horns..
 
 
 <div align="center">
@@ -67,7 +67,7 @@ By offloading geometry transformation to the **GPU Vertex Shader**, the CPU only
 ### 演示链接 | Demo & Links
 *   **视频讲解 (Lesson by me):** [项目演示与技术说明-Bilibili](https://www.bilibili.com/video/BV1YZ421T71J/)
 *   **平台 (Platform):** IdeaXR / Godot
-*   **语言 (Language):** GLSL
+*   **语言 (Language):** HLSL
 
 <div align="center">
 <img width="965" height="631" alt="4538dc38d885161eb52dcd0ac1cab358" src="https://github.com/user-attachments/assets/759af608-358f-44b1-a4e7-9523c2904e8f" />
