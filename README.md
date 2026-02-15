@@ -9,6 +9,14 @@
 
 Developed in June 2024, this project addresses the performance bottlenecks of generating dynamic high-poly geometries in VR environments. Using the **IdeaXR** engine, I implemented a mapping system via **GLSL Vertex Shaders** that deforms and maps standard meshes (Cubes) onto Bezier trajectories in real-time, creating volumetric shapes like jump ropes and organic horns.
 
+
+> **1. 项目概要 | Abstract**
+> 
+> 本项目展示了一种基于 **GLSL 顶点着色器** 的实时几何映射方法。利用 **IdeaXR** 引擎，我实现了将标准立方体沿贝塞尔曲线路径进行实时挤压与扭转的变形算法。该方法绕过了传统的 CPU 网格生成瓶颈，能够以极高性能在 VR 环境中呈现具有体积感的动态曲线几何体（如跳绳、牛角状管道等）。
+>
+> This project demonstrates a real-time geometric mapping **method** using **GLSL Vertex Shaders**. Within the **IdeaXR** engine, I implemented an **algorithm** that deforms standard cubes along Bezier paths. By bypassing traditional CPU mesh generation, this **technique** enables high-performance rendering of volumetric curved geometries in VR like jump ropes and organic horns..
+
+
 <div align="center">
 <img width="621" height="363" alt="7aec8c513d9799716392b5121d123825" src="https://github.com/user-attachments/assets/1c66695b-46e4-4d83-baa1-b71d3fd36436" />
 </div>
