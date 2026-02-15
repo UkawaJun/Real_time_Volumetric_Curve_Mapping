@@ -6,9 +6,9 @@
 
 > **1. 项目概要 | Abstract**
 > 
-> 本项目展示了一种基于 **HLSL 顶点着色器** 的实时几何映射方法。利用 **IdeaXR** 引擎，我实现了将标准立方体沿贝塞尔曲线路径进行实时挤压与扭转的变形算法。该方法绕过了传统的 CPU 网格生成瓶颈，能够以极高性能在 VR 环境中呈现具有体积感的动态曲线几何体（如跳绳、牛角状管道等）。
+> 本项目展示了一种基于 **HLSL 顶点着色器** 的实时几何映射方法。利用 **IdeaXR** (基于Godot)引擎，我实现了将标准立方体沿贝塞尔曲线路径进行实时挤压与扭转的变形算法。该方法绕过了传统的 CPU 网格生成瓶颈，能够以极高性能在 VR 环境中呈现具有体积感的动态曲线几何体（如跳绳、牛角状管道等）。
 >
-> This project demonstrates a real-time geometric mapping **method** using **HLSL Vertex Shaders**. Within the **IdeaXR** engine, I implemented an **algorithm** that deforms standard cubes along Bezier paths. By bypassing traditional CPU mesh generation, this **technique** enables high-performance rendering of volumetric curved geometries in VR like jump ropes and organic horns..
+> This project demonstrates a real-time geometric mapping **method** using **HLSL Vertex Shaders**. Within the **IdeaXR** (based on Godot)engine, I implemented an **algorithm** that deforms standard cubes along Bezier paths. By bypassing traditional CPU mesh generation, this **technique** enables high-performance rendering of volumetric curved geometries in VR like jump ropes and organic horns..
 
 
 <div align="center">
