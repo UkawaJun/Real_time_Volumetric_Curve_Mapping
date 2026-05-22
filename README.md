@@ -68,4 +68,13 @@ By offloading geometry transformation to the **GPU Vertex Shader**, the CPU only
 </div>
 
 Thank you for your reading - by UkawaJun
+## 📜 License & Copyright
+
+This project uses a dual-license architecture to protect different types of digital assets:
+
+* **Source Code (`.hlsl`, scripts, Godot project files):** Licensed under the [MIT License](LICENSE). You are free to use, modify, and distribute the code for both personal and commercial projects, provided that the original copyright notice is included.
+* **Documentation & Art Assets (`.pdf`, `.axg`, `.png` and visual materials):** Licensed under the [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/) License. You may share these materials freely with attribution to the author, but you may **not** alter them, build upon them, or use them for commercial purposes without explicit permission.
+
+Copyright (c) 2026 UkawaJun. All rights reserved.
+
 ---
